@@ -1,11 +1,12 @@
 package com.prac.springboot.domain.posts;
 
+import com.prac.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 
 import javax.persistence.*;
 
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,26 +47,26 @@ public class Posts {
         return author;
     }
 
-    public static Builder builder() {
-        return new Builder();
+    public static Builder1 builder() {
+        return new Builder1();
     }
 
-    static class Builder {
+    public static class Builder1 {
         private String title;
         private String content;
         private String author;
 
-        public Builder title(String title) {
+        public Builder1 title(String title) {
             this.title = title;
             return this;
         }
 
-        public Builder content(String content) {
+        public Builder1 content(String content) {
             this.content = content;
             return this;
         }
 
-        public Builder author(String author) {
+        public Builder1 author(String author) {
             this.author = author;
             return this;
         }
@@ -78,5 +79,10 @@ public class Posts {
             return new Posts(title, content, author);
         }
 
+    }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 }
